@@ -1,0 +1,39 @@
+version: '3'  # version of compose format 
+
+services:
+  brevet-service:
+    build: ./brevet  
+    volumes:
+      - ./brevet:/usr/src/app 
+    ports:
+      - 5002:5000  # host:container
+    environment:
+      - DB_PORT_27017_TCP_ADDR=db
+    depends_on:
+      - db
+  
+  website:
+    image: php:apache 
+    volumes:
+      - ./website:/var/www/html 
+    ports:
+      - 5001:80  # host:container
+    depends_on:
+      - brevet-service  # website is not going to work unless laptop-service is running
+  db:
+    image: mongo:3.0.2
+
+  calculator:
+    build: .
+    command: python -u flask-brevets.py
+    ports: 
+      - 5000:5000
+    volumes:
+      - .:/todo
+    environment:
+      - DB_PORT_27017_TCP_ADDR=db
+    depends_on:
+      - db
+    links:
+      - db
+

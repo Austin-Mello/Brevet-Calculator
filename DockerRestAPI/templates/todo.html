@@ -1,0 +1,33 @@
+<form action="/new" method="POST">
+  <label>Distance</label>
+  <select name="distance" id="brevet_dist_km">
+    <option value="200">200km</option>
+    <option value="300">300km</option>
+    <option value="400">400km</option>
+    <option value="600">600km</option>
+    <option value="1000">1000km</option>
+  </select>
+  <div>
+    <label>Begins at</label>	  
+    <input type="date" name="begin_date" value="2020-01-01"></input>
+    <input type="time" name="begin_time" value="00:00"></input>
+  </div>
+  <div>
+    <label>Control</label>
+    <input type="text" name="control">
+    <input type="submit"></input>
+  </div>
+</form>
+
+<form action="/show" method="POST">
+  <button>Display</button>
+</form>
+
+<form action="/clear" method="POST">
+  <button>Clear</button>
+</form>
+
+{% for item in items %}
+  <h1> {{ item.name }} </h1>
+  <p> {{ item.description }} <p>
+{% endfor %}

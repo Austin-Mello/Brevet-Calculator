@@ -1,0 +1,19 @@
+<header>CONTROLS:</header>
+
+<style>
+table, th, td {
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+		th td {padding: 15px;}
+</style>
+<body>
+<table style="width:100%">
+	{% for item in items %}
+	<tr><th>Brevit distance: {{item.distance}}</th></tr>
+	<tr><td>Control distance:{{item.control}}</tr></td>
+		<tr><td>Start time: {{item.start}}</tr></td>
+			<tr><td>Stop time: {{item.stop}}</tr></td>
+	{% endfor %}
+</table>
+</body>
